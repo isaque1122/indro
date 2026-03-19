@@ -3,103 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Intro Yin Yang</title>
+<title>Fortnite Fan Page</title>
 <style>
-  /* Tela inteira centralizada */
+  /* Reset básico */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   body, html {
     height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #111;
-    font-family: Arial, sans-serif;
-  }
-
-  /* Container da intro */
-  #intro {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 1s ease;
-  }
-
-  /* Símbolo do Yin Yang */
-  .yin-yang {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: conic-gradient(black 0deg 180deg, white 180deg 360deg);
-    position: relative;
-    animation: spin 3s linear infinite;
-  }
-
-  /* Bolinhas internas */
-  .yin-yang::before,
-  .yin-yang::after {
-    content: '';
-    position: absolute;
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-  }
-
-  .yin-yang::before {
-    background: white;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .yin-yang::after {
-    background: black;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  /* Animação de giro */
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  /* Conteúdo principal */
-  #main-content {
-    display: none;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
     color: white;
-    font-size: 2rem;
-    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-x: hidden;
+  }
+
+  header {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background-color: #1a1a2e;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    color: #f77f00;
+    text-shadow: 2px 2px 5px black;
+  }
+
+  main {
+    padding: 50px 20px;
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Banner animado */
+  .banner {
+    width: 300px;
+    height: 150px;
+    margin: 20px auto;
+    background: url('https://cdn2.unrealengine.com/Fortnite%2Fhome%2Fhome-keyart-1920x1080-1920x1080-75aa4d3c3089.jpg') center/cover no-repeat;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+
+  button {
+    padding: 15px 25px;
+    margin: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+  }
+
+  button:hover {
+    transform: scale(1.1);
+  }
+
+  .btn-info {
+    background-color: #f77f00;
+    color: white;
+  }
+
+  .btn-fun {
+    background-color: #00b4d8;
+    color: white;
+  }
+
+  /* Box de informações */
+  #infoBox {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 10px;
+    display: none;
   }
 </style>
 </head>
 <body>
 
-  <div id="intro">
-    <div class="yin-yang"></div>
-  </div>
+<header>
+  <h1>Fortnite Fan Page</h1>
+</header>
 
-  <div id="main-content">
-    Bem-vindo ao site!
-  </div>
+<main>
+  <div class="banner"></div>
 
-  <script>
-    // Tempo de exibição da intro (4 segundos)
-    setTimeout(() => {
-      // Fade out da intro
-      const intro = document.getElementById('intro');
-      intro.style.opacity = 0;
+  <button class="btn-info" onclick="showInfo()">Curiosidades do Fortnite</button>
+  <button class="btn-fun" onclick="funEffect()">Efeito Surpresa!</button>
 
-      // Depois do fade, esconder intro e mostrar conteúdo
-      setTimeout(() => {
-        intro.style.display = 'none';
-        document.getElementById('main-content').style.display = 'flex';
-      }, 1000); // 1 segundo de transição
-    }, 4000);
-  </script>
+  <div id="infoBox"></div>
+</main>
+
+<script>
+  function showInfo() {
+    const infoBox = document.getElementById('infoBox');
+    infoBox.style.display = 'block';
+    infoBox.innerHTML = `
+      <h2>Curiosidades:</h2>
+      <ul>
+        <li>Fortnite foi lançado em 2017 pela Epic Games.</li>
+        <li>O modo Battle Royale é gratuito para jogar.</li>
+        <li>Existem skins raras que são colecionáveis.</li>
+        <li>O jogo recebe atualizações constantes com eventos temáticos.</li>
+      </ul>
+    `;
+  }
+
+  function funEffect() {
+    const colors = ['#f77f00', '#00b4d8', '#90be6d', '#f94144', '#f9c74f'];
+    document.body.style.background = `linear-gradient(to bottom, ${colors[Math.floor(Math.random()*colors.length)]}, ${colors[Math.floor(Math.random()*colors.length)]})`;
+    alert("Boom! Fortnite vibes!");
+  }
+</script>
 
 </body>
 </html>
