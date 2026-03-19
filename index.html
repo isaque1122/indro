@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro Yin Yang</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Tela inteira centralizada */
+        body, html {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #111;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Container da intro */
+        #intro {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease;
+        }
+
+        /* Símbolo do Yin Yang usando CSS */
+        .yin-yang {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(black 0deg 180deg, white 180deg 360deg);
+            position: relative;
+            animation: spin 3s linear infinite;
+        }
+
+        /* Bolinhas dentro do Yin Yang */
+        .yin-yang::before,
+        .yin-yang::after {
+            content: '';
+            position: absolute;
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+        }
+
+        .yin-yang::before {
+            background: white;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .yin-yang::after {
+            background: black;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Animação de giro */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Conteúdo principal escondido inicialmente */
+        #main-content {
+            display: none;
+            color: white;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="intro">
+        <div class="yin-yang"></div>
+    </div>
+
+    <div id="main-content">
+        Bem-vindo ao site!
+    </div>
+
+    <script>
+        // Duração da intro em milissegundos
+        const introDuration = 4000; // 4 segundos
+
+        setTimeout(() => {
+            // Esconde a intro
+            document.getElementById('intro').style.opacity = 0;
+
+            // Mostra o conteúdo principal após transição
+            setTimeout(() => {
+                document.getElementById('intro').style.display = 'none';
+                document.getElementById('main-content').style.display = 'flex';
+            }, 1000); // Tempo do fade out
+        }, introDuration);
+    </script>
+    
+</body>
+</html>
